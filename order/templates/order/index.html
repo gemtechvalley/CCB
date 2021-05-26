@@ -1,0 +1,25 @@
+{% extends "home/base.html" %}
+
+{% block navbar %}
+{% include "home/navbar.html" %}
+{% endblock %}
+
+{% block carousel %}
+{% include "home/carousel.html" %}
+{% endblock %}
+
+{% block content %}
+    {% for order in orders %}
+        <article class="media content-section">
+          <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ order.author }}</a>
+              <small class="text-muted">{{ order.date_posted|date:"F d, Y" }}</small>
+            </div>
+            <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ order.title }}</a></h2>
+            <p class="article-content">{{ order.content }}</p>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
